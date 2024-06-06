@@ -1,11 +1,9 @@
+import Router from './Router.jsx';
+
 import './App.css';
 
 function App() {
-  return (
-    <>
-      <h1>App is running!</h1>
-    </>
-  );
+  return <Router />;
 }
 
 export default App;
