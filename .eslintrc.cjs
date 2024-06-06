@@ -11,14 +11,24 @@ module.exports = {
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
-  settings: { react: { version: '18.2' } },
-  plugins: ['react-refresh'],
+  settings: {
+    react: { version: '18.2' },
+    'import/resolver': {
+      alias: {
+        map: [
+          ['@', './src'],
+          ['public', './public'],
+        ],
+        extensions: ['.jsx', '.js', '.json', '.svg'],
+      },
+    },
+  },
+  plugins: ['react-refresh', 'import'],
   rules: {
     'react/jsx-no-target-blank': 'off',
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },
     ],
-    'import/no-unresolved': 'error',
   },
 };
