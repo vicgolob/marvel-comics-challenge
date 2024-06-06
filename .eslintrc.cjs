@@ -7,6 +7,7 @@ module.exports = {
     'plugin:react/jsx-runtime',
     'plugin:react-hooks/recommended',
     'eslint-config-prettier',
+    'plugin:import/errors',
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
@@ -18,5 +19,6 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    'import/no-unresolved': 'error',
   },
 };
