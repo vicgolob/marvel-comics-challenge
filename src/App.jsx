@@ -1,9 +1,15 @@
 import Router from './Router.jsx';
 
-import './App.css';
+import './App.scss';
+import Header from './components/Header/Header.jsx';
 
 function App() {
-  return <Router />;
+  return (
+    <>
+      <Header />
+      <Router />
+    </>
+  );
 }
 
 export default App;

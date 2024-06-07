@@ -1,0 +1,54 @@
+.character-card {
+  height: 245.97px;
+  width: 172.5px;
+  background-color: black;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 15px),
+    calc(100% - 15px) 100%,
+    0 100%
+  );
+  position: relative;
+
+  .character-image-container {
+    width: 172.5px;
+    height: 189.97px;
+
+    .character-image {
+      object-fit: cover;
+    }
+  }
+
+  .character-curtain {
+    background-color: red;
+    bottom: 50px;
+    position: absolute;
+    height: 60px;
+    width: 100%;
+    z-index: -1;
+    transition: all 200ms linear;
+  }
+
+  .character-description-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    padding: 16px;
+
+    .is-favorite-icon path {
+      transition-delay: 100ms;
+    }
+  }
+
+  &:hover {
+    .character-curtain {
+      bottom: 0;
+    }
+
+    .is-favorite-icon path {
+      fill: white;
+    }
+  }
+}
