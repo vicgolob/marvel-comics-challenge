@@ -4,12 +4,16 @@ import './Characters.scss';
 
 function Characters() {
   return (
-    <div className="character-cards-container">
-      <CharacterCard isFavorite />
-      <CharacterCard />
-      <CharacterCard isFavorite />
-      <CharacterCard />
-      <CharacterCard isFavorite />
+    <div className="page-container">
+      <div className="character-cards-container">
+        <CharacterCard isFavorite />
+        <CharacterCard />
+        <CharacterCard isFavorite />
+        <CharacterCard />
+        <CharacterCard isFavorite />
+        <CharacterCard />
+        <CharacterCard isFavorite />
+      </div>
     </div>
   );
 }

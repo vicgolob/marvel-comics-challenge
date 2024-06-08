@@ -1,9 +1,25 @@
-@import './variables';
+@import '@/variables';
+@import '@/breakpoints';
+
+:root {
+  background-color: $dark-violet;
+}
 
 #root {
-  width: 393px;
+  min-width: 375px;
+  max-width: $large-screen-breakpoint;
+  background-color: $white;
+  margin: 0 auto;
 }
 
 .text-small {
   font-size: $font-s;
+}
+
+.page-container {
+  padding: 8px;
+
+  @media screen and (min-width: $tablet-breakpoint) {
+    padding: 48px;
+  }
 }
