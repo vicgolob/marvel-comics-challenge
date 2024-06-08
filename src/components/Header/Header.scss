@@ -1,8 +1,18 @@
+@import '@/breakpoints';
+
 header {
   background-color: black;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 84px;
-  padding-inline: 16px;
+  padding-inline: 8px;
+
+  @media screen and (min-width: 380px) and (max-width: $phone-breakpoint) {
+    padding-inline: 16px;
+  }
+
+  @media screen and (min-width: $tablet-breakpoint) {
+    padding-inline: 48px;
+  }
 }

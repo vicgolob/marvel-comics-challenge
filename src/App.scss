@@ -19,6 +19,10 @@
 .page-container {
   padding: 8px;
 
+  @media screen and (min-width: 380px) and (max-width: $phone-breakpoint) {
+    padding: 16px;
+  }
+
   @media screen and (min-width: $tablet-breakpoint) {
     padding: 48px;
   }
