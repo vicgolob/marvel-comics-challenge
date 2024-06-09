@@ -1,0 +1,27 @@
+@import '@/variables.scss';
+
+::placeholder {
+  color: #aaaaaa;
+}
+
+.search-container {
+  border-bottom: 1px solid $black;
+  display: inline-flex;
+  column-gap: 12px;
+  height: 27px;
+  width: 100%;
+  margin-bottom: 12px;
+
+  input {
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    color: $black;
+    outline: none;
+    text-transform: uppercase;
+  }
+}
+
+.search-results-count {
+  margin-bottom: 12px;
+}
