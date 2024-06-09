@@ -2,23 +2,32 @@ import PropTypes from 'prop-types';
 
 import './CharacterCard.scss';
 
-import X from '@/assets/x.png';
 import IconHeartRed from '@/assets/icon-heart-red.svg?react';
 import IconHeartWhite from '@/assets/icon-heart-white.svg?react';
 
-function CharacterCard({ isFavorite = false }) {
+function CharacterCard({ name, image, isFavorite = false }) {
   return (
     <div className="character-card">
       <div className="character-image-container">
-        <img className="character-image" src={X} alt="" />
+        <img className="character-image" src={image} alt="" />
       </div>
-      <div className="character-curtain" />
+
+      <div className="divider" />
+
       <div className="character-description-container">
-        <p className="text-small">NAME</p>
+        <div className="character-curtain" />
+        <p className="text-small character-description-name">
+          {name.toUpperCase()}
+        </p>
+
         {isFavorite ? (
-          <IconHeartRed className="is-favorite-icon" width={12} />
+          <IconHeartRed
+            data-testid="red-heart-icon"
+            className="is-favorite-icon"
+            width="12px"
+          />
         ) : (
-          <IconHeartWhite width={12} />
+          <IconHeartWhite data-testid="red-heart-empty" width="12px" />
         )}
       </div>
     </div>
@@ -28,5 +37,7 @@ function CharacterCard({ isFavorite = false }) {
 export default CharacterCard;
 
 CharacterCard.propTypes = {
+  name: PropTypes.string,
+  image: PropTypes.string,
   isFavorite: PropTypes.bool,
 };
