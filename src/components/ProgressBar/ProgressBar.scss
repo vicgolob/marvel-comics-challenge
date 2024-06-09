@@ -1,0 +1,8 @@
+@import '@/variables';
+
+.progress-bar {
+  height: 5.32px;
+  width: 0;
+  background-color: $red;
+  transition: width 200ms ease-out;
+}
