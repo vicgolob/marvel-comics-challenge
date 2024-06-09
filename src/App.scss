@@ -12,6 +12,10 @@
   margin: 0 auto;
 }
 
+.text-xs {
+  font-size: $font-xs;
+}
+
 .text-small {
   font-size: $font-s;
 }
@@ -26,4 +30,10 @@
   @media screen and (min-width: $tablet-breakpoint) {
     padding: 48px;
   }
+}
+
+.icon-btn {
+  padding: 0;
+  border: none;
+  background-color: transparent;
 }
