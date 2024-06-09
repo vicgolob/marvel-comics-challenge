@@ -1,6 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import Characters from './pages/Characters/Characters.jsx';
-import CharacterDetail from './pages/CharacterDetail/CharacterDetail.jsx';
+import { Characters, CharacterDetail } from '@/pages/index.js';
 
 const Router = () => {
   return (
