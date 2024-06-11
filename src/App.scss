@@ -20,10 +20,18 @@
   font-size: $font-s;
 }
 
+.text-xl {
+  font-size: $font-xl;
+}
+
+.text-bold {
+  font-weight: 500;
+}
+
 .page-container {
   padding: 8px;
 
-  @media screen and (min-width: 380px) and (max-width: $phone-breakpoint) {
+  @media screen and (min-width: 406px) and (max-width: $phone-breakpoint) {
     padding: 16px;
   }
 
