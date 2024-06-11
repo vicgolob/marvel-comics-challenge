@@ -1,16 +1,23 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
 
-import IconHeartRed from '@/assets/icon-heart-red.svg?react';
-import IconHeartWhite from '@/assets/icon-heart-white.svg?react';
 import { FavoriteBtn } from '@/components/index.js';
+import { Context } from '@/context/CharactersContext';
 
 import './CharacterCard.scss';
 
 function CharacterCard({ id, name, image, isFavorite = false }) {
+  const { addToFavorite, removeFromFavorite } = useContext(Context);
+
   function generateCharacterNameSlug() {
     return name.toLowerCase().replace(/ /g, '-');
   }
+
+  function updateFavorites() {
+    isFavorite ? removeFromFavorite(id) : addToFavorite(id);
+  }
+
   return (
     <div className="character-card">
       <Link
@@ -30,7 +37,7 @@ function CharacterCard({ id, name, image, isFavorite = false }) {
           {name.toUpperCase()}
         </p>
 
-        <FavoriteBtn isFavorite={isFavorite} />
+        <FavoriteBtn isFavorite={isFavorite} handleClick={updateFavorites} />
       </div>
     </div>
   );

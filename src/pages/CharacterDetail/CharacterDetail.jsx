@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { ProgressBar, FavoriteBtn, ComicCard } from '@/components/index.js';
 import { getCharacter, getComicsByCharacter } from '@/api/charactersApi.js';
+import { Context } from '@/context/CharactersContext';
 
 import './CharacterDetail.scss';
 
@@ -10,6 +11,8 @@ function CharacterDetail() {
   const location = useLocation();
   const { state: locationState } = location;
   const characterId = locationState ? locationState.characterId : '1010354';
+  const { isFavoriteCharacter, addToFavorite, removeFromFavorite } =
+    useContext(Context);
 
   const [character, setCharacter] = useState(undefined);
   const [comicsList, setComicsList] = useState([]);
@@ -40,6 +43,12 @@ function CharacterDetail() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [characterId]);
 
+  function updateFavorites() {
+    isFavoriteCharacter(characterId)
+      ? removeFromFavorite(characterId)
+      : addToFavorite(characterId);
+  }
+
   return (
     <>
       {showProgressBar && <ProgressBar />}
@@ -54,7 +63,10 @@ function CharacterDetail() {
             <div className="character-description-container">
               <div className="character-description-title">
                 <h1 className="text-xl">{character.name.toUpperCase()}</h1>
-                <FavoriteBtn />
+                <FavoriteBtn
+                  isFavorite={isFavoriteCharacter(characterId)}
+                  handleClick={updateFavorites}
+                />
               </div>
               <p>{character.description}</p>
             </div>

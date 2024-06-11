@@ -1,7 +1,9 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 
 import { Characters } from '@/pages/index.js';
+import { Context } from '@/context/CharactersContext.jsx';
 
 vi.mock('@/components/ProgressBar/ProgressBar.jsx', () => {
   const ProgressBar = () => <div data-testid="progressBar-component" />;
@@ -32,19 +34,34 @@ vi.mock('@/api/charactersApi.js', async () => {
 });
 
 describe('Characters', () => {
+  function SetupCharactersPage() {
+    return (
+      <MemoryRouter>
+        <Context.Provider
+          value={{
+            removeFromFavorite: vi.fn(),
+            addToFavorite: vi.fn(),
+            isFavoriteCharacter: vi.fn(),
+          }}
+        >
+          <Characters />
+        </Context.Provider>
+      </MemoryRouter>
+    );
+  }
   it('should render without crashing', () => {
-    const { container } = render(<Characters />);
+    const { container } = render(SetupCharactersPage());
     expect(container).toBeInTheDocument();
   });
 
   it('should render ProgressBar initially', () => {
-    const { getByTestId } = render(<Characters />);
+    const { getByTestId } = render(SetupCharactersPage());
 
     expect(getByTestId('progressBar-component')).toBeInTheDocument();
   });
 
   it('should fetch characters list on mount', async () => {
-    const { getAllByTestId } = render(<Characters />);
+    const { getAllByTestId } = render(SetupCharactersPage());
 
     await vi.waitFor(() => {
       expect(getAllByTestId('characterCard-component')).toHaveLength(10);

@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import Header from '@/components/Header/Header';
+import CharactersContextProvider from '@/context/CharactersContext.jsx';
 
 vi.mock('@/components/Favorites/Favorites.jsx', () => {
   const Favorites = () => <div data-testid="favorites-component" />;
@@ -12,7 +13,9 @@ describe('Header', () => {
   function SetupHeaderComponent() {
     return (
       <MemoryRouter>
-        <Header />
+        <CharactersContextProvider>
+          <Header />
+        </CharactersContextProvider>
       </MemoryRouter>
     );
   }

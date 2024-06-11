@@ -1,12 +1,15 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
+
 import { CharacterCard, ProgressBar, Search } from '@/components/index.js';
 import { getCharacters } from '@/api/charactersApi.js';
+import { Context } from '@/context/CharactersContext';
 
 import './Characters.scss';
 
 function Characters() {
   const [charactersList, setCharactersList] = useState([]);
   const [showProgressBar, setShowProgressBar] = useState(true);
+  const { isFavoriteCharacter } = useContext(Context);
 
   function updateCharactersList(results) {
     setCharactersList(results);
@@ -48,13 +51,13 @@ function Characters() {
       <div className="page-container">
         <Search onSearch={handleSearch} resultsCount={charactersList.length} />
         <div className="character-cards-container">
-          {charactersList.map(({ id, name, image }, index) => (
+          {charactersList.map(({ id, name, image }) => (
             <CharacterCard
               key={id}
               id={id}
               name={name}
               image={image}
-              isFavorite={index % 2 === 0}
+              isFavorite={isFavoriteCharacter(id)}
             />
           ))}
         </div>

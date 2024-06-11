@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import IconHeartRed from '@/assets/icon-heart-red.svg?react';
 import IconHeartWhite from '@/assets/icon-heart-white.svg?react';
 
-function FavoriteBtn({ isFavorite = false }) {
+function FavoriteBtn({ isFavorite = false, handleClick }) {
   return (
-    <button className="icon-btn">
+    <button className="icon-btn" onClick={handleClick}>
       {isFavorite ? (
         <IconHeartRed
           onClick={() => {}}
@@ -24,4 +24,5 @@ export default FavoriteBtn;
 
 FavoriteBtn.propTypes = {
   isFavorite: PropTypes.bool,
+  handleClick: PropTypes.func,
 };
