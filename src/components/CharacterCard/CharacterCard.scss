@@ -1,26 +1,18 @@
 @import '@/variables';
+@import '@/mixins';
 
 .character-card {
-  min-height: 245.97px;
-  width: 173px;
+  @include create-container-edge;
   background-color: $black;
-  clip-path: polygon(
-    0 0,
-    100% 0,
-    100% calc(100% - 15px),
-    calc(100% - 15px) 100%,
-    0 100%
-  );
   position: relative;
 
   .character-image-container {
-    width: 173px;
-    height: 189.97px;
+    height: 190px;
     position: relative;
+    overflow: hidden;
 
     .character-image {
       object-fit: cover;
-      height: 100%;
       width: 100%;
     }
   }

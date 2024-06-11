@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
-
-import './CharacterCard.scss';
+import { Link } from 'react-router-dom';
 
 import IconHeartRed from '@/assets/icon-heart-red.svg?react';
 import IconHeartWhite from '@/assets/icon-heart-white.svg?react';
-import { Link } from 'react-router-dom';
+import { FavoriteBtn } from '@/components/index.js';
+
+import './CharacterCard.scss';
 
 function CharacterCard({ id, name, image, isFavorite = false }) {
   function generateCharacterNameSlug() {
@@ -17,7 +18,7 @@ function CharacterCard({ id, name, image, isFavorite = false }) {
         state={{ characterId: id }}
       >
         <div className="character-image-container">
-          <img className="character-image" src={image} alt="" />
+          <img className="character-image" src={image} role="presentation" />
         </div>
       </Link>
 
@@ -29,18 +30,7 @@ function CharacterCard({ id, name, image, isFavorite = false }) {
           {name.toUpperCase()}
         </p>
 
-        <button className="icon-btn">
-          {isFavorite ? (
-            <IconHeartRed
-              onClick={() => {}}
-              data-testid="red-heart-icon"
-              className="is-favorite-icon"
-              width="12px"
-            />
-          ) : (
-            <IconHeartWhite data-testid="red-heart-empty" width="12px" />
-          )}
-        </button>
+        <FavoriteBtn isFavorite={isFavorite} />
       </div>
     </div>
   );

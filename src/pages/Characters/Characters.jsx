@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { CharacterCard, ProgressBar, Search } from '@/components/index.js';
-import { getCharacters } from '@/api/charactersApi';
+import { getCharacters } from '@/api/charactersApi.js';
 
 import './Characters.scss';
 
@@ -8,17 +8,8 @@ function Characters() {
   const [charactersList, setCharactersList] = useState([]);
   const [showProgressBar, setShowProgressBar] = useState(true);
 
-  function buildCharacters(characters) {
-    return characters.map(({ id, name, description, thumbnail }) => ({
-      id,
-      name,
-      description,
-      image: `${thumbnail.path}/portrait_medium.${thumbnail.extension}`,
-    }));
-  }
-
   function updateCharactersList(results) {
-    setCharactersList(buildCharacters(results));
+    setCharactersList(results);
 
     setTimeout(() => {
       setShowProgressBar(false);

@@ -8,6 +8,8 @@ header {
   align-items: center;
   height: 84px;
   padding-inline: 8px;
+  position: relative;
+  z-index: 100;
 
   @media screen and (min-width: 380px) and (max-width: $phone-breakpoint) {
     padding-inline: 16px;
@@ -15,5 +17,6 @@ header {
 
   @media screen and (min-width: $tablet-breakpoint) {
     padding-inline: 48px;
+    border-bottom: 1px solid #333333;
   }
 }

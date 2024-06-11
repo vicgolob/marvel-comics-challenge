@@ -1,0 +1,21 @@
+@import '@/breakpoints';
+
+.comic-card {
+  .comic-image-container {
+    width: 164px;
+
+    img {
+      object-fit: cover;
+      width: 100%;
+    }
+
+    @media screen and (min-width: $tablet-breakpoint) {
+      width: 170px;
+    }
+  }
+
+  .comic-title {
+    margin-top: 12px;
+    margin-bottom: 8px;
+  }
+}
