@@ -28,6 +28,7 @@ a:hover {
 
 body {
   margin: 0;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 h1 {
@@ -37,4 +38,8 @@ h1 {
 
 p {
   margin: 0;
+}
+
+button {
+  cursor: pointer;
 }
