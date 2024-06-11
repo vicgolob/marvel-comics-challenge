@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+
 import { Characters, CharacterDetail } from '@/pages/index.js';
 
 const Router = () => {

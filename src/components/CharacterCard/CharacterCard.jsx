@@ -15,7 +15,9 @@ function CharacterCard({ id, name, image, isFavorite = false }) {
   }
 
   function updateFavorites() {
-    isFavorite ? removeFromFavorite(id) : addToFavorite(id);
+    isFavorite
+      ? removeFromFavorite(id)
+      : addToFavorite({ id, name, image, isFavorite: true });
   }
 
   return (

@@ -1,11 +1,27 @@
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import IconHeartRed from '@/assets/icon-heart-red.svg';
 import IconHeartWhite from '@/assets/icon-heart-white.svg';
+import { Context } from '@/context/CharactersContext';
 
 import './Favorites.scss';
 
 function Favorites({ count }) {
+  const navigate = useNavigate();
+  const { isFilterActive, toggleIsFilterActive } = useContext(Context);
+
+  function handleFavoritesClick() {
+    if (!isFilterActive) {
+      toggleIsFilterActive();
+    }
+    if (window.location.pathname !== '/') {
+      return navigate('/');
+    }
+  }
+
   return (
-    <div className="favorite-container">
+    <button className="favorite-container" onClick={handleFavoritesClick}>
       <img
         id="favorite-icon"
         src={count === 0 ? IconHeartWhite : IconHeartRed}
@@ -13,7 +29,7 @@ function Favorites({ count }) {
         alt={count === 0 ? 'no favorites yet' : `${count} favorites`}
       />
       <span>{count}</span>
-    </div>
+    </button>
   );
 }
 

@@ -1,19 +1,26 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
+
 import IconSearch from '@/assets/icon-search.svg';
+import { useDebounce } from '@/hooks/hooks.js';
 
 import './Search.scss';
-import { useDebounce } from '../../hooks/hooks';
 
 function Search({ resultsCount, onSearch }) {
   const [searchTerm, setSearchTerm] = useState('');
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
+  const isInitialRender = useRef(true);
 
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
   };
 
   useEffect(() => {
+    if (isInitialRender.current) {
+      isInitialRender.current = false;
+      return;
+    }
+
     onSearch(debouncedSearchTerm);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedSearchTerm]);

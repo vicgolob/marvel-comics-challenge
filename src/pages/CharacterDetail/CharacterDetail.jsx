@@ -46,7 +46,7 @@ function CharacterDetail() {
   function updateFavorites() {
     isFavoriteCharacter(characterId)
       ? removeFromFavorite(characterId)
-      : addToFavorite(characterId);
+      : addToFavorite(character);
   }
 
   return (
@@ -72,7 +72,7 @@ function CharacterDetail() {
             </div>
           </div>
           <div className="character-comics-container">
-            <h2>COMICS</h2>
+            <h2 className="comics-title">COMICS</h2>
             <div className="character-comics-list-container">
               {comicsList.map(({ id, image, title, year }) => (
                 <ComicCard key={id} image={image} title={title} year={year} />

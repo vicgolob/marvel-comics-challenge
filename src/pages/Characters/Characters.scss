@@ -1,4 +1,14 @@
 @import '@/breakpoints';
+@import '@/variables';
+
+.favorites-title {
+  color: $black;
+  margin-bottom: 24px;
+}
+
+.no-favorites {
+  color: $black;
+}
 
 .character-cards-container {
   display: grid;

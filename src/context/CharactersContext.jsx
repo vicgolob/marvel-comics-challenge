@@ -18,6 +18,7 @@ const Provider = ({ children }) => {
     const value = getStorageItems();
     return value ? JSON.parse(value) : [];
   });
+  const [isFilterActive, setIsFilterActive] = useState(false);
 
   const addToFavorite = (item) => {
     const updatedItems = [...favorites, item];
@@ -25,17 +26,22 @@ const Provider = ({ children }) => {
     updateStorage(updatedItems);
   };
 
-  const removeFromFavorite = (id) => {
-    const updatedItems = favorites.filter((item) => item !== id);
+  const removeFromFavorite = (idToRemove) => {
+    const updatedItems = favorites.filter(({ id }) => id !== idToRemove);
     setFavorites(updatedItems);
     updateStorage(updatedItems);
   };
 
-  const isFavoriteCharacter = (id) => favorites.some((item) => item === id);
+  const isFavoriteCharacter = (idToFavorite) =>
+    favorites.some(({ id }) => id === idToFavorite);
 
   const favoriteCount = favorites.length;
 
   const isFavoritesEmpty = favorites.length === 0;
+
+  function toggleIsFilterActive() {
+    setIsFilterActive(!isFilterActive);
+  }
 
   const value = {
     favorites,
@@ -44,6 +50,8 @@ const Provider = ({ children }) => {
     isFavoriteCharacter,
     favoriteCount,
     isFavoritesEmpty,
+    isFilterActive,
+    toggleIsFilterActive,
   };
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };

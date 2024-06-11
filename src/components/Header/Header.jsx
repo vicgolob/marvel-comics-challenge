@@ -8,11 +8,15 @@ import { Context } from '@/context/CharactersContext';
 import './Header.scss';
 
 function Header() {
-  const { favoriteCount } = useContext(Context);
+  const { favoriteCount, isFilterActive, toggleIsFilterActive } =
+    useContext(Context);
 
+  function resetFavoritesFilter() {
+    isFilterActive && toggleIsFilterActive();
+  }
   return (
     <header>
-      <Link to="/">
+      <Link to="/" onClick={resetFavoritesFilter}>
         <img src={Logo} role="presentation" />
       </Link>
       <Favorites count={favoriteCount} />

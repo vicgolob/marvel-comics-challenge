@@ -1,6 +1,7 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
+
 import Header from '@/components/Header/Header';
 import CharactersContextProvider from '@/context/CharactersContext.jsx';
 
