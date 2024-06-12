@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import IconSearch from '@/assets/icon-search.svg';
 import { useDebounce } from '@/hooks/hooks.js';
+import { Context } from '@/context/CharactersContext';
 
 import './Search.scss';
 
@@ -10,10 +11,25 @@ function Search({ resultsCount, onSearch }) {
   const [searchTerm, setSearchTerm] = useState('');
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
   const isInitialRender = useRef(true);
+  const {
+    isFilterActive,
+    isFavoritesEmpty,
+    shouldResetSearch,
+    updateShouldResetSearch,
+  } = useContext(Context);
 
   const handleChange = (event) => {
-    setSearchTerm(event.target.value);
+    isSearchDisabled && setSearchTerm(event.target.value);
   };
+
+  useEffect(() => {
+    if (shouldResetSearch) {
+      setSearchTerm('');
+      isInitialRender.current = true;
+      updateShouldResetSearch(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [shouldResetSearch]);
 
   useEffect(() => {
     if (isInitialRender.current) {
@@ -25,6 +41,10 @@ function Search({ resultsCount, onSearch }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedSearchTerm]);
 
+  function isSearchDisabled() {
+    return isFilterActive && isFavoritesEmpty;
+  }
+
   return (
     <>
       <div className="search-container">
@@ -34,6 +54,7 @@ function Search({ resultsCount, onSearch }) {
           placeholder="SEARCH CHARACTER"
           value={searchTerm}
           onChange={handleChange}
+          disabled={isSearchDisabled()}
         />
       </div>
 

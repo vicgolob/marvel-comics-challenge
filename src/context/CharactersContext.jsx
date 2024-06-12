@@ -19,6 +19,7 @@ const Provider = ({ children }) => {
     return value ? JSON.parse(value) : [];
   });
   const [isFilterActive, setIsFilterActive] = useState(false);
+  const [shouldResetSearch, updateShouldResetSearch] = useState(false);
 
   const addToFavorite = (item) => {
     const updatedItems = [...favorites, item];
@@ -52,6 +53,8 @@ const Provider = ({ children }) => {
     isFavoritesEmpty,
     isFilterActive,
     toggleIsFilterActive,
+    shouldResetSearch,
+    updateShouldResetSearch,
   };
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };

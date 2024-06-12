@@ -23,7 +23,7 @@ async function doFetch(url) {
     const data = await response.json();
     return data.data.results;
   } catch (error) {
-    throw new Error('Failed to fetch characters:', error);
+    throw new Error('Failed to do fetch', error);
   }
 }
 
@@ -43,13 +43,14 @@ export async function getCharacters(additionalQuery = {}) {
 
   try {
     const charactersResponse = await doFetch(url);
-    return charactersResponse.map(({ id, name, thumbnail }) => ({
+    const results = charactersResponse.map(({ id, name, thumbnail }) => ({
       id,
       name,
       image: `${thumbnail.path}/portrait_medium.${thumbnail.extension}`,
     }));
+    return { results };
   } catch (error) {
-    return error;
+    return { error: 'Failed to fetch characters' };
   }
 }
 
@@ -76,9 +77,9 @@ export async function getCharacter(characterId) {
         image: `${thumbnail.path}/standard_xlarge.${thumbnail.extension}`,
       })
     );
-    return character.length ? character[0] : undefined;
+    return character.length ? { result: character[0] } : undefined;
   } catch (error) {
-    return error;
+    return { error: 'Failed to fetch character details' };
   }
 }
 
@@ -103,7 +104,7 @@ export async function getComicsByCharacter(characterId) {
 
   try {
     const comicsResponse = await doFetch(url);
-    return comicsResponse.map(({ id, title, dates, thumbnail }) => {
+    const results = comicsResponse.map(({ id, title, dates, thumbnail }) => {
       const fullDate = dates.find((date) => date.type === 'onsaleDate').date;
       const [year] = fullDate.split('-');
 
@@ -114,7 +115,8 @@ export async function getComicsByCharacter(characterId) {
         image: `${thumbnail.path}/portrait_medium.${thumbnail.extension}`,
       };
     });
+    return { results };
   } catch (error) {
-    return error;
+    return { error: 'Failed to fetch comics' };
   }
 }

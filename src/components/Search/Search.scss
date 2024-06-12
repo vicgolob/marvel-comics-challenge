@@ -19,6 +19,11 @@
     color: $black;
     outline: none;
     text-transform: uppercase;
+    width: 100%;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
   }
 }
 

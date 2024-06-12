@@ -8,11 +8,16 @@ import { Context } from '@/context/CharactersContext';
 import './Header.scss';
 
 function Header() {
-  const { favoriteCount, isFilterActive, toggleIsFilterActive } =
-    useContext(Context);
+  const {
+    favoriteCount,
+    isFilterActive,
+    toggleIsFilterActive,
+    updateShouldResetSearch,
+  } = useContext(Context);
 
   function resetFavoritesFilter() {
     isFilterActive && toggleIsFilterActive();
+    updateShouldResetSearch(true);
   }
   return (
     <header>

@@ -5,3 +5,4 @@ export { default as ProgressBar } from './ProgressBar/ProgressBar.jsx';
 export { default as Search } from './Search/Search.jsx';
 export { default as FavoriteBtn } from './FavoriteBtn/FavoriteBtn.jsx';
 export { default as ComicCard } from './ComicCard/ComicCard.jsx';
+export { default as ErrorMessage } from './ErrorMessage/ErrorMessage.jsx';

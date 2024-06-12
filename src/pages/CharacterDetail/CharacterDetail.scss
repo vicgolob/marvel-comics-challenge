@@ -2,87 +2,93 @@
 @import '@/breakpoints';
 @import '@/mixins';
 
-.character-banner-container {
-  @include create-container-edge(24px);
-  background-color: $black;
-  display: flex;
-  flex-direction: column;
+.page {
+  p.text-error {
+    margin: 16px;
+  }
 
-  .character-description-container {
+  .character-banner-container {
+    @include create-container-edge(24px);
+    background-color: $black;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding-inline: 16px;
-    padding-block: 24px;
 
-    .character-description-title {
+    .character-description-container {
       display: flex;
-      justify-content: space-between;
-      margin-bottom: 24px;
+      flex-direction: column;
+      justify-content: center;
+      padding-inline: 16px;
+      padding-block: 24px;
 
-      h1 {
-        width: 90%;
-        margin: 0;
+      .character-description-title {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 24px;
+
+        h1 {
+          width: 90%;
+          margin: 0;
+        }
       }
+    }
+
+    @media screen and (min-width: $tablet-breakpoint) {
+      height: 278px;
+      flex-direction: row;
+
+      .character-description-container {
+        padding-inline: 48px;
+        width: 100%;
+      }
+    }
+
+    @media screen and (min-width: $large-screen-breakpoint) {
+      height: 320px;
+      padding-inline: calc((100% - 960px) * 0.5);
     }
   }
 
-  @media screen and (min-width: $tablet-breakpoint) {
-    height: 278px;
-    flex-direction: row;
+  .character-comics-container {
+    color: $black;
+    padding-block: 48px;
+    padding-left: 16px;
 
-    .character-description-container {
-      padding-inline: 48px;
-      width: 100%;
+    .comics-title {
+      margin-bottom: 24px;
+    }
+
+    .character-comics-list-container {
+      display: flex;
+      column-gap: 16px;
+      overflow-x: auto;
+      padding-bottom: 16px;
+
+      &::-webkit-scrollbar {
+        height: 4px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: $red;
+      }
+
+      &::-webkit-scrollbar-track {
+        background-color: $gray;
+      }
+
+      &::-webkit-scrollbar-button {
+        display: none;
+      }
+    }
+
+    @media screen and (min-width: $tablet-breakpoint) {
+      padding-left: 48px;
     }
   }
 
   @media screen and (min-width: $large-screen-breakpoint) {
-    height: 320px;
-    padding-inline: calc((100% - 960px) * 0.5);
-  }
-}
-
-.character-comics-container {
-  color: $black;
-  padding-block: 48px;
-  padding-left: 16px;
-
-  .comics-title {
-    margin-bottom: 24px;
-  }
-
-  .character-comics-list-container {
-    display: flex;
-    column-gap: 16px;
-    overflow-x: auto;
-    padding-bottom: 16px;
-
-    &::-webkit-scrollbar {
-      height: 4px;
+    .character-banner-container,
+    .character-comics-container {
+      padding-inline: calc((100% - 960px) * 0.5);
     }
-
-    &::-webkit-scrollbar-thumb {
-      background: $red;
-    }
-
-    &::-webkit-scrollbar-track {
-      background-color: $gray;
-    }
-
-    &::-webkit-scrollbar-button {
-      display: none;
-    }
-  }
-
-  @media screen and (min-width: $tablet-breakpoint) {
-    padding-left: 48px;
-  }
-}
-
-@media screen and (min-width: $large-screen-breakpoint) {
-  .character-banner-container,
-  .character-comics-container {
-    padding-inline: calc((100% - 960px) * 0.5);
   }
 }

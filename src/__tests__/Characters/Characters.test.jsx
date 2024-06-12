@@ -19,17 +19,17 @@ vi.mock('@/api/charactersApi.js', async () => {
   const actual = await vi.importActual('@/api/charactersApi.js');
   return {
     ...actual,
-    getCharacters: vi.fn().mockResolvedValue(
-      Array.from({ length: 10 }, () => ({
-        id: Math.random(),
+    getCharacters: vi.fn().mockResolvedValue({
+      results: Array.from({ length: 10 }, (_, index) => ({
+        id: index,
         name: '3-D Man',
         description: '',
         thumbnail: {
           path: 'http://some_path.com',
           extension: 'jpg',
         },
-      }))
-    ),
+      })),
+    }),
   };
 });
 
