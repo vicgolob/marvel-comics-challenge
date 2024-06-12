@@ -9,12 +9,12 @@ import './Favorites.scss';
 
 function Favorites({ count }) {
   const navigate = useNavigate();
-  const { isFilterActive, toggleIsFilterActive, updateShouldResetSearch } =
+  const { isFilterActive, toggleIsFilterActive, shouldResetSearch } =
     useContext(Context);
 
   function handleFavoritesClick() {
     if (!isFilterActive) {
-      updateShouldResetSearch(true);
+      shouldResetSearch.current = true;
       toggleIsFilterActive();
     }
     if (window.location.pathname !== '/') {
