@@ -1,6 +1,9 @@
+@import '@/variables';
+
 .favorite-container {
   display: flex;
   align-items: center;
+  color: $white;
 
   #favorite-icon {
     margin-right: 8px;
