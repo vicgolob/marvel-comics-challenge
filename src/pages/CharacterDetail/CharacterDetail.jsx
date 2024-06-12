@@ -94,6 +94,7 @@ function CharacterDetail() {
                   <FavoriteBtn
                     isFavorite={isFavoriteCharacter(characterId)}
                     handleClick={updateFavorites}
+                    isLarge
                   />
                 </div>
                 <p>{character.description}</p>
