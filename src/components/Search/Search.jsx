@@ -11,8 +11,12 @@ function Search({ resultsCount, onSearch }) {
   const [searchTerm, setSearchTerm] = useState('');
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
   const isInitialRender = useRef(true);
-  const { isFilterActive, isFavoritesEmpty, shouldResetSearch } =
-    useContext(Context);
+  const {
+    isFilterActive,
+    isFavoritesEmpty,
+    shouldResetSearch,
+    updateShouldResetSearch,
+  } = useContext(Context);
 
   const handleChange = (event) => {
     isSearchDisabled && setSearchTerm(event.target.value);
@@ -22,7 +26,7 @@ function Search({ resultsCount, onSearch }) {
     if (shouldResetSearch.current) {
       setSearchTerm('');
       isInitialRender.current = true;
-      shouldResetSearch.current = false;
+      updateShouldResetSearch(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [shouldResetSearch.current]);
