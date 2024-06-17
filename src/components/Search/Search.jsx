@@ -23,13 +23,13 @@ function Search({ resultsCount, onSearch }) {
   };
 
   useEffect(() => {
-    if (shouldResetSearch) {
+    if (shouldResetSearch.current) {
       setSearchTerm('');
       isInitialRender.current = true;
       updateShouldResetSearch(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [shouldResetSearch]);
+  }, [shouldResetSearch.current]);
 
   useEffect(() => {
     if (isInitialRender.current) {
