@@ -85,7 +85,7 @@ function Characters() {
       return <p className="no-favorites">NO FAVORITES YET</p>;
     }
 
-    if (isFilterActive && charactersList.length === 0) {
+    if (charactersList.length === 0) {
       return <ErrorMessage message="There are no results to show" />;
     }
 
