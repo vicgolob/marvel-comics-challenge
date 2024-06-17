@@ -12,12 +12,12 @@ function Header() {
     favoriteCount,
     isFilterActive,
     toggleIsFilterActive,
-    shouldResetSearch,
+    updateShouldResetSearch,
   } = useContext(Context);
 
   function resetFavoritesFilter() {
     isFilterActive && toggleIsFilterActive();
-    shouldResetSearch.current = true;
+    updateShouldResetSearch(true);
   }
   return (
     <header>
