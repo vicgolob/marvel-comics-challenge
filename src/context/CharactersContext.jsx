@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { createContext, useRef, useState } from 'react';
+import { createContext, useState } from 'react';
 
 export const Context = createContext();
 
@@ -19,7 +19,7 @@ const Provider = ({ children }) => {
     return value ? JSON.parse(value) : [];
   });
   const [isFilterActive, setIsFilterActive] = useState(false);
-  const shouldResetSearch = useRef(false);
+  const [shouldResetSearch, updateShouldResetSearch] = useState(false);
 
   const addToFavorite = (item) => {
     const updatedItems = [...favorites, item];
@@ -54,6 +54,7 @@ const Provider = ({ children }) => {
     isFilterActive,
     toggleIsFilterActive,
     shouldResetSearch,
+    updateShouldResetSearch,
   };
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };
